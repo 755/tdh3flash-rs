@@ -47,5 +47,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: tdh3flash-rs-mac
-          path: target/release/tdh3flash-rs
+          path: target/aarch64-apple-darwin/release/tdh3flash-rs
 
