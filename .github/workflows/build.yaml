@@ -19,9 +19,15 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y libudev-dev pkg-config
     - name: Build
-      run: cargo build --verbose
+      run: cargo build --verbose --release
     - name: Run tests
       run: cargo test --verbose
+    - name: Upload binary
+      uses: actions/upload-artifact@v4
+      with:
+        name: tdh3flash-rs-linux
+        path: target/release/tdh3flash-rs
+
 
   build-mac:
     runs-on: macos-15
@@ -34,4 +40,12 @@ jobs:
           target: aarch64-apple-darwin
           override: true
       - name: Build
-        run: cargo build --target aarch64-apple-darwin
+        run: cargo build --target aarch64-apple-darwin  --release
+      - name: Run tests
+        run: cargo test --verbose
+      - name: Upload binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: tdh3flash-rs-mac
+          path: target/release/tdh3flash-rs
+
